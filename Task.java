@@ -1,8 +1,10 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.io.Serializable;
 import java.util.Scanner;
-
-public class Task {
+import java.util.UUID;
+/*
+Class to represent Task objects
+ */
+public class Task implements Serializable {
 
     /*
     I would like a constructor, which will create task objects
@@ -11,6 +13,7 @@ public class Task {
     private String taskDescription;
     private Date taskDueDate;
     private String taskStatus;
+    private UUID taskID;
 
     public Task(String taskName, String taskDescription, String taskDueDate, String taskStatus) {
         Scanner sc = new Scanner(System.in);
@@ -60,14 +63,22 @@ public class Task {
                 }
             }
         }
+        this.taskID = UUID.randomUUID();
     }
+    public String toString() {
+        return "Task name: " + taskName + "\nTask description: " + taskDescription + "\nTask due date: " + taskDueDate.toString() + "\nTask status: " + taskStatus;
+    }
+    public String getTaskName() { return taskName; }
+    public String getTaskDescription() { return taskDescription; }
     public Date getTaskDueDate() {
         return taskDueDate;
     }
+    public String getTaskStatus() { return taskStatus; }
+    public UUID getTaskID() { return taskID; }
     public void displayTaskDueDate() {
         System.out.println("The due date of " + taskName + ": " + taskDueDate.toString());
     }
-    public void getStatus(Task task) {
-        System.out.println("The status of " + task.taskName + ": " + task.taskStatus);
+    public void getStatus() {
+        System.out.println("The status of " + taskName + ": " + taskStatus);
     }
 }

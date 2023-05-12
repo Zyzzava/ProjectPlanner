@@ -1,4 +1,8 @@
-public class Date {
+import java.io.Serializable;
+/*
+Class to represent Date objects
+ */
+public class Date implements Serializable {
     private int day;
     private int month;
     private int year;
